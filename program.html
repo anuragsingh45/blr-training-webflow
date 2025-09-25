@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalBuzz - Training Program</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #3b82f6;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #3b82f6;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            left: 50%;
+        }
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+        .right::after {
+            left: -16px;
+        }
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            .left::after, .right::after {
+                left: 15px;
+            }
+            .right {
+                left: 0%;
+            }
+        }
+        .session-card {
+            transition: all 0.3s ease;
+        }
+        .session-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-auto" src="http://static.photos/blue/200x200/1" alt="DigitalBuzz Logo">
+                        <span class="ml-2 text-xl font-bold text-blue-600">DigitalBuzz</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="index.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#" class="text-blue-600 border-b-2 border-blue-600 px-3 py-2 text-sm font-medium">Program</a>
+                    <a href="market.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Market</a>
+                    <a href="developers.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Developers</a>
+                    <a href="team.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Team</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="#" class="bg-blue-50 border-blue-500 text-blue-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Program</a>
+                <a href="market.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Market</a>
+                <a href="developers.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Developers</a>
+                <a href="team.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Team</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-blue-600">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                12-Day Onboarding Program
+            </h1>
+            <p class="mt-6 max-w-3xl mx-auto text-xl text-blue-100">
+                Comprehensive training to transform you into a successful Relationship Manager
+            </p>
+        </div>
+    </div>
+
+    <!-- Program Timeline -->
+    <div class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Training Journey</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Day-by-Day Breakdown
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Structured learning path from induction to independent meetings
+                </p>
+            </div>
+
+            <div class="timeline mt-10">
+                <!-- Day 1 -->
+                <div id="day1" class="timeline-container left" data-aos="fade-right">
+                    <div class="session-card bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                                <span class="text-white font-bold">01</span>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Company Induction & Foundation</h3>
+                                <p class="mt-1 text-sm text-gray-500">September 1, 2025</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-600">
+                                Understand DigitalBuzz's vision, your role within the company structure, and the basic rules of engagement.
+                            </p>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-medium text-gray-900">Morning Session (10:00 AM - 1:00 PM)</h4>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <i data-feather="check" class="flex-shrink-0 h-4 w-4 text-green-500 mr-2"></i>
+                                        <span>Welcome by HR Manager Ankita and Senior HR Ragini</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="check" class="flex-shrink-0 h-4 w-4 text-green-500 mr-2"></i>
+                                        <span>Company policies walkthrough</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="check" class="flex-shrink-0 h-4 w-4 text-green-500 mr-2"></i>
+                                        <span>Office tour and familiarization</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="check" class="flex-shrink-0 h-4 w-4 text-green-500 mr-2"></i>
+                                        <span>IT orientation for email, CRM, and internal software</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-medium text-gray-900">Afternoon Session (2:00 PM - 5:00 PM)</h4>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <i data-feather="check" class="flex-shrink-0 h-4 w-4 text-green-500 mr-2"></i>
+                                        <span>Introduction to DigitalBuzz and our core business</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="check" class="flex-shrink-0 h-4 w-4 text-green-500 mr-2"></i>
+                                        <span>Meet the departments and key personnel</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="check" class="flex-shrink-0 h-4 w-4 text-green-500 mr-2"></i>
+                                        <span>Company process and workflow overview</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="check" class="flex-shrink-0 h-4 w-4 text-green-500 mr-2"></i>
+                                        <span>Rules, regulations, and career path discussion</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div id="day2" class="timeline-container right" data-aos="fade-left">
+                    <div class="session-card bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                                <span class="text-white font-bold">02</span>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Mastering the Bangalore Market</h3>
+                                <p class="mt-1 text-sm text-gray-500">September 2, 2025</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-600">
+                                Develop a deep understanding of the Bangalore real estate landscape, including key locations, major developers, and client profiles.
+                            </p>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-medium text-gray-900">Key Learning Areas</h4>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <i data-feather="map" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Bangalore Market & Connectivity Map (North, East, South, West)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="home" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>A-Grade Developers & Their Projects (Prestige, Sobha, Brigade, Godrej)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="users" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>The Channel Partner (CP) Profile and how to approach them</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div id="day3" class="timeline-container left" data-aos="fade-right">
+                    <div class="session-card bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                                <span class="text-white font-bold">03</span>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Sales Pitch & Calling</h3>
+                                <p class="mt-1 text-sm text-gray-500">September 3, 2025</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-600">
+                                Learn the DigitalBuzz cold calling pitch and scripts. Focus on the "Straight Line Method" to establish authority in the first 30 seconds.
+                            </p>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-medium text-gray-900">Training Components</h4>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <i data-feather="phone" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Cold calling pitch structure and key talking points</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="activity" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Straight Line Method for establishing authority quickly</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="mic" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Supervised live calls to potential clients</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="message-square" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Practice sessions with feedback from trainers</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 4 & 5 -->
+                <div id="day4-5" class="timeline-container right" data-aos="fade-left">
+                    <div class="session-card bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                                <span class="text-white font-bold">04-05</span>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">F2F Meeting Module Training</h3>
+                                <p class="mt-1 text-sm text-gray-500">September 4-5, 2025</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-600">
+                                Detailed walkthrough of the face-to-face (F2F) meeting process including pre-meeting research, conversation structure, and strategy presentation.
+                            </p>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-medium text-gray-900">Key Training Areas</h4>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <i data-feather="search" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Pre-meeting research and preparation</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="user" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Structuring the conversation from greeting to close</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="presentation" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Effective strategy presentation techniques</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="file-text" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Company policies discussion framework</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 6 -->
+                <div id="day6" class="timeline-container left" data-aos="fade-right">
+                    <div class="session-card bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                                <span class="text-white font-bold">06</span>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Mock Sessions</h3>
+                                <p class="mt-1 text-sm text-gray-500">September 6, 2025</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-600">
+                                Conduct mock F2F meetings with trainers and senior RMs playing the role of the client. Receive constructive feedback on your presentation, communication, and objection handling skills.
+                            </p>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-medium text-gray-900">Session Details</h4>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <i data-feather="repeat" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Multiple mock meeting scenarios with different client types</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="thumbs-up" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Immediate feedback on performance</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="trending-up" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Opportunity to refine techniques before live meetings</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Days 7-9 -->
+                <div id="day7-9" class="timeline-container right" data-aos="fade-left">
+                    <div class="session-card bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                                <span class="text-white font-bold">07-09</span>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">On-Field Meetings & Objection Handling</h3>
+                                <p class="mt-1 text-sm text-gray-500">September 7-9, 2025</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-600">
+                                Accompany senior RMs on actual client meetings. Observe how they build rapport, present solutions, and handle real-world objections. Participate in post-meeting debriefs.
+                            </p>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-medium text-gray-900">Learning Objectives</h4>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <i data-feather="eye" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Observe experienced RMs in live client interactions</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="shield" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Learn effective objection handling techniques</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="refresh-cw" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Participate in post-meeting debriefs and analysis</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 10 -->
+                <div id="day10" class="timeline-container left" data-aos="fade-right">
+                    <div class="session-card bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                                <span class="text-white font-bold">10</span>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Your First Meeting (Shadowed)</h3>
+                                <p class="mt-1 text-sm text-gray-500">September 10, 2025</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-600">
+                                You will lead your own client meeting from start to finish. A senior RM or Team Lead will accompany you to observe and provide support if needed.
+                            </p>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-medium text-gray-900">Key Aspects</h4>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <i data-feather="user" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Take the lead in all aspects of the client meeting</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="eye" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Senior RM observes and takes notes for feedback</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="life-buoy" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Support available if needed, but minimal intervention</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 11 -->
+                <div id="day11" class="timeline-container right" data-aos="fade-left">
+                    <div class="session-card bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                                <span class="text-white font-bold">11</span>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Independent Meetings</h3>
+                                <p class="mt-1 text-sm text-gray-500">September 11, 2025</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-600">
+                                You will conduct your own client meetings independently. The focus is on applying all the training from the previous days in a live environment.
+                            </p>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-medium text-gray-900">Expectations</h4>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <i data-feather="user" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Complete independence in conducting meetings</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="check-circle" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Apply all learned techniques and strategies</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="clipboard" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Self-evaluation after each meeting</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 12 -->
+                <div id="day12" class="timeline-container left" data-aos="fade-right">
+                    <div class="session-card bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                                <span class="text-white font-bold">12</span>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Review Meeting</h3>
+                                <p class="mt-1 text-sm text-gray-500">September 12, 2025</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-600">
+                                A comprehensive review of your performance with your Team Lead and the Sales Head. Discuss feedback, review understanding, and set performance goals.
+                            </p>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-medium text-gray-900">Agenda</h4>
+                                <ul class="mt-2 space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <i data-feather="message-square" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Discuss feedback from mock calls and on-field meetings</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="book" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Review your understanding of products and processes</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="help-circle" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Address any remaining questions or challenges</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="target" class="flex-shrink-0 h-4 w-4 text-blue-500 mr-2"></i>
+                                        <span>Set clear performance goals for your first 30 days</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Training Resources</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Materials & Downloads
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Essential documents to support your learning journey
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow" data-aos="fade-up">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
+                                <i data-feather="file-text" class="h-6 w-6 text-blue-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Company Handbook</h3>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Policies, code of conduct, and administrative procedures
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                Download PDF <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
+                                <i data-feather="phone" class="h-6 w-6 text-blue-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Calling Scripts</h3>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Cold calling pitch templates and guidelines
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                Download PDF <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
+                                <i data-feather="map" class="h-6 w-6 text-blue-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Bangalore Market Map</h3>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Key locations, connectivity, and developer projects
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                Download PDF <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                        DigitalBuzz
+                    </h3>
+                    <p class="mt-4 text-sm text-gray-300">
+                        Premier Real Estate Lead Generation agency empowering professionals with high-quality, targeted leads.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                        Training
+                    </h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white">12-Day Program</a></li>
+                        <li><a href="market.html" class="text-sm text-gray-300 hover:text-white">Market Mastery</a></li>
+                        <li><a href="developers.html" class="text-sm text-gray-300 hover:text-white">Developer Partners</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                        Resources
+                    </h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white">CRM Access</a></li>
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white">Sales Materials</a></li>
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white">Pitch Scripts</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                        Contact
+                    </h3>
+                    <ul class="mt-4 space-y-2">
+                        <li class="text-sm text-gray-300">HR: Ankita, Ragini</li>
+                        <li class="text-sm text-gray-300">Sales Head: Samir Kumar</li>
+                        <li class="text-sm text-gray-300">Team Lead: Jimmy</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i data-feather="facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i data-feather="instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i data-feather="linkedin"></i>
+                    </a>
+                </div>
+                <p class="mt-8 text-sm text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2025 DigitalBuzz Real Estate Marketing Agency. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init();
+        feather.replace();
+        
+        // Mobile menu toggle
+        document.querySelector('[aria-controls="mobile-menu"]').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
