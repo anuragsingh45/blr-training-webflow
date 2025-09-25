@@ -9,47 +9,49 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-yellow': '#facc15',
+                        'custom-dark': '#1f2937',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         .map-container {
             height: 500px;
             background-color: #f3f4f6;
         }
-        .region-card {
+        .region-card, .developer-card {
             transition: all 0.3s ease;
         }
-        .region-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        .developer-card {
-            transition: all 0.3s ease;
-        }
-        .developer-card:hover {
+        .region-card:hover, .developer-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body class="font-sans antialiased text-gray-800">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-lg">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <div class="flex-shrink-0 flex items-center">
-                        <img class="h-8 w-auto" src="http://static.photos/blue/200x200/1" alt="DigitalBuzz Logo">
-                        <span class="ml-2 text-xl font-bold text-blue-600">DigitalBuzz</span>
+                        <img class="h-10 w-auto" src="logo.png" alt="DigitalBuzz Logo">
                     </div>
                 </div>
                 <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
-                    <a href="index.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Home</a>
-                    <a href="program.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Program</a>
-                    <a href="#" class="text-blue-600 border-b-2 border-blue-600 px-3 py-2 text-sm font-medium">Market</a>
-                    <a href="developers.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Developers</a>
-                    <a href="team.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Team</a>
+                    <a href="index.html" class="text-gray-500 hover:text-yellow-500 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="program.html" class="text-gray-500 hover:text-yellow-500 px-3 py-2 text-sm font-medium">Program</a>
+                    <a href="#" class="text-yellow-500 border-b-2 border-yellow-500 px-3 py-2 text-sm font-medium">Market</a>
+                    <a href="team.html" class="text-gray-500 hover:text-yellow-500 px-3 py-2 text-sm font-medium">Team</a>
                 </div>
                 <div class="-mr-2 flex items-center md:hidden">
-                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500" aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <i data-feather="menu"></i>
                     </button>
@@ -57,35 +59,31 @@
             </div>
         </div>
 
-        <!-- Mobile menu, show/hide based on menu state. -->
         <div class="md:hidden hidden" id="mobile-menu">
             <div class="pt-2 pb-3 space-y-1">
                 <a href="index.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
                 <a href="program.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Program</a>
-                <a href="#" class="bg-blue-50 border-blue-500 text-blue-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Market</a>
-                <a href="developers.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Developers</a>
+                <a href="#" class="bg-yellow-50 border-yellow-500 text-yellow-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Market</a>
                 <a href="team.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Team</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div class="bg-blue-600">
+    <div class="bg-yellow-500">
         <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
                 Bangalore Real Estate Market
             </h1>
-            <p class="mt-6 max-w-3xl mx-auto text-xl text-blue-100">
+            <p class="mt-6 max-w-3xl mx-auto text-xl text-gray-800">
                 Comprehensive guide to key locations, connectivity, and major developers
             </p>
         </div>
     </div>
 
-    <!-- Bangalore Map Section -->
     <div class="py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Market Intelligence</h2>
+                <h2 class="text-base text-yellow-600 font-semibold tracking-wide uppercase">Market Intelligence</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                     Bangalore Connectivity Map
                 </p>
@@ -96,17 +94,16 @@
 
             <div class="mt-10">
                 <div class="map-container rounded-lg shadow-lg overflow-hidden">
-                    <img src="http://static.photos/cityscape/1200x630/2" alt="Bangalore Map" class="w-full h-full object-cover">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248849.56658922112!2d77.46612479544978!3d12.95395998135835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf80c2354213979f1!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1663888342412!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Regions Section -->
     <div class="py-12 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Key Regions</h2>
+                <h2 class="text-base text-yellow-600 font-semibold tracking-wide uppercase">Key Regions</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                     Bangalore's Prime Real Estate Areas
                 </p>
@@ -115,109 +112,82 @@
                 </p>
             </div>
 
-            <div class="mt-10">
-                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                    <!-- North Bangalore -->
-                    <div class="region-card bg-white p-6 rounded-lg shadow" data-aos="fade-up">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
-                                <i data-feather="compass" class="h-6 w-6 text-blue-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900">North Bangalore</h3>
-                                <p class="mt-1 text-sm text-gray-500">
-                                    Hebbal, Yelahanka, Devanahalli
-                                </p>
-                            </div>
+            <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+                <div class="region-card bg-white p-6 rounded-lg shadow" data-aos="fade-up">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-yellow-100 rounded-md p-3">
+                            <i data-feather="compass" class="h-6 w-6 text-yellow-600"></i>
                         </div>
-                        <div class="mt-4">
-                            <p class="text-sm text-gray-600">
-                                Connectivity: Bellary Road (NH 44), upcoming Metro Blue Line.
-                            </p>
-                            <p class="mt-2 text-sm text-gray-600">
-                                New Launch (2025): Prestige Somerville (near Old Airport Road).
-                            </p>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-gray-900">North Bangalore</h3>
+                            <p class="mt-1 text-sm text-gray-500">Hebbal, Yelahanka, Thanisandra, Devanahalli</p>
                         </div>
                     </div>
+                    <div class="mt-4 space-y-2 text-sm text-gray-600">
+                        <p><strong>Overview:</strong> Known for its proximity to the Kempegowda International Airport and major tech parks like Manyata.</p>
+                        <p><strong>Connectivity:</strong> Bellary Road (NH 44), Outer Ring Road (ORR), and the upcoming Metro Blue Line (Airport Line).</p>
+                        <p><strong>Key Drivers:</strong> Aerospace Park, Devanahalli Business Park, and KIADB Hardware Tech Park make it a hub for commercial and residential growth.</p>
+                    </div>
+                </div>
 
-                    <!-- East Bangalore -->
-                    <div class="region-card bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="100">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
-                                <i data-feather="compass" class="h-6 w-6 text-blue-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900">East Bangalore</h3>
-                                <p class="mt-1 text-sm text-gray-500">
-                                    Whitefield, Sarjapur Road, Marathahalli
-                                </p>
-                            </div>
+                <div class="region-card bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-yellow-100 rounded-md p-3">
+                            <i data-feather="compass" class="h-6 w-6 text-yellow-600"></i>
                         </div>
-                        <div class="mt-4">
-                            <p class="text-sm text-gray-600">
-                                Connectivity: Outer Ring Road (ORR), Purple Metro Line.
-                            </p>
-                            <p class="mt-2 text-sm text-gray-600">
-                                New Launch (2025): Godrej Woodscapes (Budigere Cross).
-                            </p>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-gray-900">East Bangalore</h3>
+                            <p class="mt-1 text-sm text-gray-500">Whitefield, Sarjapur Road, Marathahalli, Budigere Cross</p>
                         </div>
                     </div>
+                    <div class="mt-4 space-y-2 text-sm text-gray-600">
+                        <p><strong>Overview:</strong> The quintessential IT corridor of Bangalore, home to numerous tech parks and multinational companies.</p>
+                        <p><strong>Connectivity:</strong> Outer Ring Road (ORR), Whitefield Main Road, Sarjapur Road, and the operational Purple Metro Line.</p>
+                        <p><strong>Key Drivers:</strong> ITPL, EPIP Zone, and other tech parks drive housing demand. Excellent social infrastructure with malls, schools, and hospitals.</p>
+                    </div>
+                </div>
 
-                    <!-- South Bangalore -->
-                    <div class="region-card bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="200">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
-                                <i data-feather="compass" class="h-6 w-6 text-blue-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900">South Bangalore</h3>
-                                <p class="mt-1 text-sm text-gray-500">
-                                    Kanakapura Road, Bannerghatta Road
-                                </p>
-                            </div>
+                <div class="region-card bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-yellow-100 rounded-md p-3">
+                            <i data-feather="compass" class="h-6 w-6 text-yellow-600"></i>
                         </div>
-                        <div class="mt-4">
-                            <p class="text-sm text-gray-600">
-                                Connectivity: Green Metro Line, NICE Ring Road.
-                            </p>
-                            <p class="mt-2 text-sm text-gray-600">
-                                New Launch (2025): Brigade Sanctuary (off Sarjapur Road).
-                            </p>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-gray-900">South Bangalore</h3>
+                            <p class="mt-1 text-sm text-gray-500">Kanakapura Road, Bannerghatta Road, Electronic City, Begur</p>
                         </div>
                     </div>
+                    <div class="mt-4 space-y-2 text-sm text-gray-600">
+                        <p><strong>Overview:</strong> A well-established residential area combined with the major electronics industrial park, Electronic City.</p>
+                        <p><strong>Connectivity:</strong> Hosur Road, NICE Ring Road, Green Metro Line (Kanakapura Road), and the new Yellow Metro Line (Electronic City).</p>
+                        <p><strong>Key Drivers:</strong> Established residential appeal, major IT/ITES companies in Electronic City, and excellent connectivity to other parts of the city.</p>
+                    </div>
+                </div>
 
-                    <!-- West Bangalore -->
-                    <div class="region-card bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="300">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
-                                <i data-feather="compass" class="h-6 w-6 text-blue-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900">West Bangalore</h3>
-                                <p class="mt-1 text-sm text-gray-500">
-                                    Rajajinagar, Yeshwanthpur
-                                </p>
-                            </div>
+                <div class="region-card bg-white p-6 rounded-lg shadow" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-yellow-100 rounded-md p-3">
+                            <i data-feather="compass" class="h-6 w-6 text-yellow-600"></i>
                         </div>
-                        <div class="mt-4">
-                            <p class="text-sm text-gray-600">
-                                Connectivity: Green and Purple Metro Lines.
-                            </p>
-                            <p class="mt-2 text-sm text-gray-600">
-                                New Launch (2025): Sobha Neopolis (near Panathur, Varthur).
-                            </p>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-gray-900">West Bangalore</h3>
+                            <p class="mt-1 text-sm text-gray-500">Rajajinagar, Yeshwanthpur, Tumkur Road</p>
                         </div>
+                    </div>
+                    <div class="mt-4 space-y-2 text-sm text-gray-600">
+                        <p><strong>Overview:</strong> A traditional part of Bangalore mixed with modern industrial and commercial development.</p>
+                        <p><strong>Connectivity:</strong> Well-connected by both the Green and Purple Metro Lines, Tumkur Road (NH 48), and proximity to Yeshwanthpur Railway Station.</p>
+                        <p><strong>Key Drivers:</strong> Home to the World Trade Center, Orion Mall, and major industrial areas, making it a balanced commercial and residential hub.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Developers Section -->
     <div class="py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Developers</h2>
+                <h2 class="text-base text-yellow-600 font-semibold tracking-wide uppercase">Developers</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                     A-Grade Developers & Their Projects
                 </p>
@@ -226,12 +196,113 @@
                 </p>
             </div>
 
-            <div class="mt-10">
-                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2">
-                    <!-- Prestige Group -->
-                    <div class="developer-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0">
-                                <img src="http://static.photos/office/200x200/1" alt
+            <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+                <div class="developer-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
+                    <h3 class="text-xl font-bold text-gray-900">Prestige Group</h3>
+                    <ul class="mt-4 space-y-2 text-sm text-gray-600">
+                        <li><strong>Prestige Park Grove:</strong> Township project in Whitefield.</li>
+                        <li><strong>Prestige Somerville:</strong> Luxury apartments near Old Airport Road.</li>
+                        <li><strong>Prestige City:</strong> Large integrated township on Sarjapur Road.</li>
+                    </ul>
+                </div>
+                <div class="developer-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-bold text-gray-900">Sobha Ltd.</h3>
+                    <ul class="mt-4 space-y-2 text-sm text-gray-600">
+                        <li><strong>Sobha Neopolis:</strong> Greek-themed luxury project on Panathur Road.</li>
+                        <li><strong>Sobha Oakshire:</strong> Premium row houses off Bellary Road.</li>
+                        <li><strong>Sobha Dream Acres:</strong> Large community focused on smart design on Panathur Road.</li>
+                    </ul>
+                </div>
+                <div class="developer-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-bold text-gray-900">Brigade Group</h3>
+                    <ul class="mt-4 space-y-2 text-sm text-gray-600">
+                        <li><strong>Brigade Sanctuary:</strong> Residential project with a focus on green living near Sarjapur Road.</li>
+                        <li><strong>Brigade Cornerstone Utopia:</strong> Smart, integrated township on Varthur Road.</li>
+                        <li><strong>Brigade El Dorado:</strong> Aerospace park-adjacent project in North Bangalore.</li>
+                    </ul>
+                </div>
+                <div class="developer-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-xl font-bold text-gray-900">Godrej Properties</h3>
+                    <ul class="mt-4 space-y-2 text-sm text-gray-600">
+                        <li><strong>Godrej Woodscapes:</strong> Project located at Budigere Cross, East Bangalore.</li>
+                        <li><strong>Godrej Ananda:</strong> Located in Aerospace Park, North Bangalore.</li>
+                        <li><strong>Godrej Splendour:</strong> Situated in Whitefield, East Bangalore.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="bg-gray-900">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                        DigitalBuzz
+                    </h3>
+                    <p class="mt-4 text-sm text-gray-300">
+                        Premier Real Estate Lead Generation agency empowering professionals with high-quality, targeted leads.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                        Training
+                    </h3>
+                    <ul class="mt-4 space-y-2">
+                         <li><a href="program.html" class="text-sm text-gray-300 hover:text-white">12-Day Program</a></li>
+                        <li><a href="market.html" class="text-sm text-gray-300 hover:text-white">Market Mastery</a></li>
+                        <li><a href="team.html" class="text-sm text-gray-300 hover:text-white">The Team</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                        Resources
+                    </h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white">CRM Access</a></li>
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white">Sales Materials</a></li>
+                        <li><a href="#" class="text-sm text-gray-300 hover:text-white">Pitch Scripts</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                        Contact
+                    </h3>
+                    <ul class="mt-4 space-y-2">
+                        <li class="text-sm text-gray-300">HR: Ankita, Ragini</li>
+                        <li class="text-sm text-gray-300">Sales Head: Samir Kumar</li>
+                        <li class="text-sm text-gray-300">Team Lead: Jimmy</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i data-feather="facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i data-feather="instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i data-feather="linkedin"></i>
+                    </a>
+                </div>
+                <p class="mt-8 text-sm text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2025 DigitalBuzz Real Estate Marketing Agency. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init();
+        feather.replace();
+        
+        // Mobile menu toggle
+        document.querySelector('[aria-controls="mobile-menu"]').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
